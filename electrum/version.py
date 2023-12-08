@@ -1,5 +1,5 @@
-ELECTRUM_VERSION = '4.1.5-bitnet'     # version of the client package
-APK_VERSION = '4.1.5.0'        # read by buildozer.spec
+ELECTRUM_VERSION = '4.2.6'     # version of the client package
+APK_VERSION = '4.2.6.0'        # read by buildozer.spec
 
 PROTOCOL_VERSION = '1.4'     # protocol version requested
 
@@ -10,11 +10,13 @@ SEED_PREFIX_2FA    = '101'     # Two-factor authentication
 SEED_PREFIX_2FA_SW = '102'     # Two-factor auth, using segwit
 
 
+
 def seed_prefix(seed_type):
     if seed_type == 'standard':
         return SEED_PREFIX
     elif seed_type == 'segwit':
-        return SEED_PREFIX_SW
+        return SEED_PREFIX
+#        return SEED_PREFIX_SW
     elif seed_type == '2fa':
         return SEED_PREFIX_2FA
     elif seed_type == '2fa_segwit':

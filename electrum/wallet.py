@@ -93,7 +93,7 @@ _logger = get_logger(__name__)
 TX_STATUS = [
     _('Unconfirmed'),
     _('Unconfirmed parent'),
-    _('paid'),
+    _('Confirmed'),
     _('Local'),
 ]
 

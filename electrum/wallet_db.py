@@ -53,7 +53,7 @@ if TYPE_CHECKING:
 
 OLD_SEED_VERSION = 4        # electrum versions < 2.0
 NEW_SEED_VERSION = 11       # electrum versions >= 2.0
-FINAL_SEED_VERSION = 43     # electrum >= 2.7 will set this to prevent
+FINAL_SEED_VERSION = 44     # electrum >= 2.7 will set this to prevent
                             # old versions from overwriting new format
 
 

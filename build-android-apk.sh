@@ -16,7 +16,7 @@ docker run -it -d --rm \
     -v $PWD:/home/user/wspace/electrum \
     -v $PWD/.buildozer/.gradle:/home/user/.gradle \
     --workdir /home/user/wspace/electrum \
-    electrum-android-builder-img
+    c4pt/electrum-android-build-apks
 echo "^^^^ first 4 or 5 numbers or letters of this hash as <docker_vm_hash>" 
 echo "->   docker exec -it <docker_vm_hash> bash"
 echo ""

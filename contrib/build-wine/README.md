@@ -1,5 +1,4 @@
-Windows binaries
-================
+# Windows binaries
 
 ✓ _These binaries should be reproducible, meaning you should be able to generate
    binaries that match the official releases._
@@ -9,12 +8,9 @@ similar system.
 
 1. Install Docker
 
-    ```
-    $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-    $ sudo apt-get update
-    $ sudo apt-get install -y docker-ce
-    ```
+    See [`contrib/docker_notes.md`](../docker_notes.md).
+
+    (worth reading even if you already have docker)
 
     Note: older versions of Docker might not work well
     (see [#6971](https://github.com/spesmilo/electrum/issues/6971)).
@@ -27,20 +23,19 @@ similar system.
     ```
     If you want reproducibility, try instead e.g.:
     ```
-    $ ELECBUILD_COMMIT=HEAD ELECBUILD_NOCACHE=1 ./build.sh
+    $ ELECBUILD_COMMIT=HEAD ./build.sh
     ```
 
 3. The generated binaries are in `./contrib/build-wine/dist`.
 
 
 
-Code Signing
-============
+## Code Signing
 
 Electrum Windows builds are signed with a Microsoft Authenticode™ code signing
 certificate in addition to the GPG-based signatures.
 
-The advantage of using Authenticode is that Electrum users won't receive a 
+The advantage of using Authenticode is that Electrum users won't receive a
 Windows SmartScreen warning when starting it.
 
 The release signing procedure involves a signer (the holder of the
@@ -62,10 +57,9 @@ certificate/key) and one or multiple trusted verifiers:
 
 
 
-Verify Integrity of signed binary
-=================================
+## Verify Integrity of signed binary
 
-Every user can verify that the official binary was created from the source code in this 
+Every user can verify that the official binary was created from the source code in this
 repository. To do so, the Authenticode signature needs to be stripped since the signature
 is not reproducible.
 
@@ -78,3 +72,20 @@ This procedure removes the differences between the signed and unsigned binary:
    of 8.
 
 The script `unsign.sh` performs these steps.
+
+## FAQ
+
+### How to investigate diff between binaries if reproducibility fails?
+`pyi-archive_viewer` is needed, for that run `$ pip install pyinstaller`.
+As a first pass overview, run:
+```
+pyi-archive_viewer -l electrum-*.exe1 > f1
+pyi-archive_viewer -l electrum-*.exe2 > f2
+diff f1 f2 > d
+cat d
+```
+Then investigate manually:
+```
+$ pyi-archive_viewer electrum-*.exe1
+? help
+```
